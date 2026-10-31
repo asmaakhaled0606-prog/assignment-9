@@ -45,12 +45,14 @@ const userSchema = new mongoose.Schema({
         default: GenderEnum.male
     },
     profileImage: String,
+    coverImages: [String],
     phone: String,
     role: {
         type: String,
         enum: Object.values(RoleEnum),
         default: RoleEnum.user
     },
+    changeCredentialAt: Date,
     provider: {
         type: String,
         enum: Object.values(ProviderEnum),

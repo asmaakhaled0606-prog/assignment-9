@@ -2,6 +2,7 @@ import express from "express";
 import connectDB from "./DB/connectionDB.js";
 import userRouter from "./modules/users/user.controller.js";
 import cors from "cors";
+import connectRedis from "./DB/connection.redis.js";
 
 const app = express();
 const port = 3000;
@@ -15,7 +16,9 @@ const bootstrap = async () => {
 
     app.use(express.json());
 
-    connectDB();
+    await connectDB();
+
+    await connectRedis();
 
     app.get("/", (req, res, next) => res.status(200).json({ message: "Welcome on Sra7a App....😍" }));
 
